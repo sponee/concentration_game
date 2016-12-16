@@ -1,8 +1,7 @@
 class GamesController < ApplicationController
-  before_action :authorize_players
+  before_action :authorize_players, :set_user
 
   def show
-    set_user
     @game = Game.find(params["id"])
   end
 
@@ -10,7 +9,7 @@ class GamesController < ApplicationController
 
   def authorize_players
     @game = Game.find(params["id"])
-    unless current_user.id == @game.player_one_id || current_user.id == @game.player_two_id
+    unless set_user && [@game.player_one_id, @game.player_two_id].include?(current_user.id)
       redirect_to root_url, alert: "You are not playing this game."
     end
   end

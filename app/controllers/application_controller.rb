@@ -3,8 +3,10 @@ class ApplicationController < ActionController::Base
 
   def hello
     set_user
-    render :html => "Hello, #{@current_user.email}! Get ready to concentrate."
+    render 'static_pages/home'
   end
+
+  private
 
   def set_user
     @user = current_user
