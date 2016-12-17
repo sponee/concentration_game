@@ -9,6 +9,6 @@ class Game < ApplicationRecord
   private
 
   def validate_player_uniqueness
-    errors.add("Games must have different Players") if player_one_id == player_two_id
+    errors.add(:base, "Games must have different Players") if player_one_id == player_two_id
   end
 end
