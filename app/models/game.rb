@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  belongs_to :user
+  
   validates :user_id, presence: true
   validates :player_one_id, presence: true
   validates :player_two_id, presence: true
