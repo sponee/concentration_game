@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "belongs to a user" do 
+    c = build(:card)
+    c.valid?
+    expect(c.errors.first).to include("must exist")
+  end
 end
