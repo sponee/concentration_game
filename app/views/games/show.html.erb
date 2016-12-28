@@ -1,3 +1,4 @@
-<p><%= "Your user id is #{@user.id}" %></p>
-<p><%= "The Game id is #{@game.id}" %></p>
-<p><%= "Game player_one_id is #{@game.player_one_id}" %></p>
+<h2>Game On!</h2>
+<% @game.cards.each do |card| %>
+  <p><%= card.content %></p>
+<% end %>
