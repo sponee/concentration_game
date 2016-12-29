@@ -6,10 +6,10 @@
       <% if card.matched? %>
         <li><p><%= card.content %></p></li>
       <% else %>
-      <li>
-        <%= check_box_tag('card_ids[]', card.id) %>
-        <p><%= card.id %></p>
-      </li>
+        <li>
+          <%= check_box_tag('card_ids[]', card.id) %>
+          <p><%= card.id %></p>
+        </li>
       <% end %>
     <% end %>
     <%= hidden_field_tag(:id, @game.id) %>
