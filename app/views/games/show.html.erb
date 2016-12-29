@@ -1,3 +1,18 @@
-<p><%= "Your user id is #{@user.id}" %></p>
-<p><%= "The Game id is #{@game.id}" %></p>
-<p><%= "Game player_one_id is #{@game.player_one_id}" %></p>
+<h2>Game On!</h2>
+
+<%= form_tag("/games", method: "get") do %>
+  <ul style="list-style-type:none">
+    <% @game.cards.each_with_index do |card, index| %>
+      <% if card.matched? %>
+        <li><p><%= card.content %></p></li>
+      <% else %>
+      <li>
+        <%= check_box_tag("card_#{card.id + index}") %>
+        <%= label_tag("card_#{card.id + index}", "#{card.id}") %>
+      </li>
+      <% end %>
+    <% end %>
+    <%= hidden_field_tag(:game_id, @game.id) %>
+  </ul>
+  <%= submit_tag("Match") %>
+<% end %>
