@@ -12,6 +12,10 @@ class GamesController < ApplicationController
   end
 
   def match_cards
+    redirect_to game_path(id: params[:id]), flash: {alert: "Please select two cards"} if params[:card_ids].count != 2 
+    c1 = Card.find params[:card_ids].first
+    c2 = Card.find params[:card_ids].last
+    Matcher.compare(c1, c2)
     redirect_to game_path(id: params[:id])
   end
 

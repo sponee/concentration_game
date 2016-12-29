@@ -16,4 +16,8 @@ class Card < ApplicationRecord
   def matched?
     self.matched
   end
+
+  def match!
+    self.update_attributes!(matched: true)
+  end
 end
