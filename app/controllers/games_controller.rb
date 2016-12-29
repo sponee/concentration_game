@@ -1,5 +1,10 @@
 class GamesController < ApplicationController
-  before_action :authorize_players, :set_user
+  before_action :authorize_players, :set_user, :authenticate_user
+  skip_before_action :authorize_players, only: [:index, :new, :create]
+
+  def index
+    @games = User.find(params[:user_id]).games
+  end
 
   def show
     @game = Game.find(params["id"])
@@ -10,6 +15,11 @@ class GamesController < ApplicationController
   end
 
   private
+
+  def authenticate_user
+    set_user
+    redirect_to root_url, alert: "You are not authorized to view this content." if current_user != User.find(params["user_id"])
+  end
 
   def authorize_players
     @game = Game.find(params["id"])
