@@ -1,6 +1,6 @@
 <h2>Game On!</h2>
 
-<%= form_tag("/games", method: "get") do %>
+<%= form_tag({controller: "games", action: "match_cards"}, method: "patch") do %>
   <ul style="list-style-type:none">
     <% @game.cards.each_with_index do |card, index| %>
       <% if card.matched? %>

@@ -5,6 +5,10 @@ class GamesController < ApplicationController
     @game = Game.find(params["id"])
   end
 
+  def match_cards
+    redirect_to game_path(id: params[:id])
+  end
+
   private
 
   def authorize_players
