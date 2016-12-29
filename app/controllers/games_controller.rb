@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   before_action :authorize_players, :set_user, :authenticate_user
   skip_before_action :authorize_players, only: [:index, :new, :create]
+  skip_before_action :authenticate_user, only: [:show, :match_cards]
 
   def index
     @games = User.find(params[:user_id]).games
