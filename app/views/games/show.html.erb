@@ -4,15 +4,15 @@
   <ul style="list-style-type:none">
     <% @game.cards.each_with_index do |card, index| %>
       <% if card.matched? %>
-        <li><p><%= card.content %></p></li>
+        <li><%= card.content %></li>
       <% else %>
-      <li>
-        <%= check_box_tag("card_#{card.id + index}") %>
-        <%= label_tag("card_#{card.id + index}", "#{card.id}") %>
-      </li>
+        <li>
+          <%= check_box_tag('card_ids[]', card.id) %>
+          <%= card.id %>
+        </li>
       <% end %>
     <% end %>
-    <%= hidden_field_tag(:game_id, @game.id) %>
+    <%= hidden_field_tag(:id, @game.id) %>
   </ul>
   <%= submit_tag("Match") %>
 <% end %>
