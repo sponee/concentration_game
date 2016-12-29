@@ -12,4 +12,8 @@ class Card < ApplicationRecord
     'Totodile',
     'Marill'
   ]
+
+  def matched?
+    self.matched
+  end
 end
