@@ -21,7 +21,8 @@ RSpec.describe Game do
     expect(@game.valid?).to eq(true)
   end
 
-  it "has exactly 18 cards" do 
+  it "has exactly 18 cards created after the game is created" do 
+    expect(@game.cards.count).to eq(0)
     @game.update_attributes!(user_id: @user.id, player_one_id: @user.id, player_two_id: @player_two.id)
     expect(@game.cards.count).to eq(18)
   end

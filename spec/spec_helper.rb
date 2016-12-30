@@ -23,6 +23,7 @@ require 'rspec/rails'
 require 'support/controller_helpers'
 
 RSpec.configure do |config|
+  ActiveRecord::Base.logger = nil
   config.include Devise::Test::ControllerHelpers, :type => :controller
   config.include ConcentrationGame::ControllerHelpers, :type => :controller
   config.include FactoryGirl::Syntax::Methods
