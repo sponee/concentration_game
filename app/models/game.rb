@@ -18,10 +18,6 @@ class Game < ApplicationRecord
 
   private
 
-  def start_game
-    self.update_attributes(current_player_id: player_one_id)
-  end
-
   def validate_player_uniqueness
     errors.add(:base, "Games must have different Players") if player_one_id == player_two_id
   end
