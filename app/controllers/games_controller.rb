@@ -9,19 +9,23 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params["id"])
+    Matcher.hide_cards(@game.cards)
   end
 
   def match_cards
-    redirect_to game_path(id: params[:id]), flash: {alert: "Please select two cards"} if params[:card_ids].count != 2 
+    redirect_to game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
     Matcher.compare(c1, c2)
-    redirect_to game_path(id: params[:id])
+    redirect_to show_guesses_path(id: params[:id], card_ids: params[:card_ids])
   end
 
   def show_guesses
-    redirect_to game_path(id: params[:id]), flash: {alert: "It is not your turn to guess"} if @user.id != @game.current_player_id
     @game = Game.find(params["id"])
+    redirect_to game_path(id: params[:id]), flash: {alert: "It is not your turn to guess"} and return if @user.id != @game.current_player_id
+    c1 = Card.find params[:card_ids].first
+    c2 = Card.find params[:card_ids].last
+    @game.update_current_player
   end
 
   private

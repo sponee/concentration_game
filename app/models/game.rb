@@ -8,7 +8,19 @@ class Game < ApplicationRecord
   validates :player_two_id, presence: true
   validate :validate_player_uniqueness
 
+  def update_current_player
+    if self.current_player_id == player_one_id
+      self.update_attributes(current_player_id: player_two_id)
+    elsif self.current_player_id == player_two_id
+      self.update_attributes(current_player_id: player_one_id)
+    end
+  end
+
   private
+
+  def start_game
+    self.update_attributes(current_player_id: player_one_id)
+  end
 
   def validate_player_uniqueness
     errors.add(:base, "Games must have different Players") if player_one_id == player_two_id

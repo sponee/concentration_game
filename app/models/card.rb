@@ -28,4 +28,8 @@ class Card < ApplicationRecord
   def hide!
     self.update_attributes!(revealed: false)
   end
+
+  def revealed?
+    self.revealed
+  end
 end
