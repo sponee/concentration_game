@@ -8,6 +8,8 @@ class Game < ApplicationRecord
   validates :player_two_id, presence: true
   validate :validate_player_uniqueness
 
+  scope :active, -> { where(winner_id: nil) }
+
   def update_current_player
     if self.current_player_id == player_one_id
       self.update_attributes(current_player_id: player_two_id)

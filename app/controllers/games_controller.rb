@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user, only: [:show, :match_cards, :show_guesses]
 
   def index
-    @games = User.find(params[:user_id]).games
+    @games = User.find(params[:user_id]).games.active
   end
 
   def show
