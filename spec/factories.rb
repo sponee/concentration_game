@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :card do
     content "Pikachu"
-    state "Not Matched"
+    revealed false
     position 1
     matched false
   end
