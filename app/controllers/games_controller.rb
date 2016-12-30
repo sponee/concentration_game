@@ -9,6 +9,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params["id"])
+    @cards = Card.where(game_id: @game.id).order(position: :asc)
     Matcher.hide_cards(@game.cards)
   end
 
@@ -22,6 +23,7 @@ class GamesController < ApplicationController
 
   def show_guesses
     @game = Game.find(params["id"])
+    @cards = Card.where(game_id: @game.id).order(position: :asc)
     redirect_to game_path(id: params[:id]), flash: {alert: "It is not your turn to guess"} and return if @user.id != @game.current_player_id
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last

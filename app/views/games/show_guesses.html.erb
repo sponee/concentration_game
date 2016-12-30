@@ -3,7 +3,7 @@
 <%= render 'game_header' %>
 
 <ul style="list-style-type:none">
-  <% @game.cards.each_with_index do |card, index| %>
+  <% @cards.each do |card| %>
     <% if card.matched? || card.revealed? %>
       <li><%= card.content %></li>
     <% else %>

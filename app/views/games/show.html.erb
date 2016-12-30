@@ -4,7 +4,7 @@
 
 <%= form_tag({controller: "games", action: "match_cards"}, method: "patch") do %>
   <ul style="list-style-type:none">
-    <% @game.cards.each_with_index do |card, index| %>
+    <% @cards.each do |card| %>
       <% if card.matched? %>
         <li><%= card.content %></li>
       <% else %>
