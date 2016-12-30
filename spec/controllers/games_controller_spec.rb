@@ -13,7 +13,15 @@ RSpec.describe GamesController, type: :controller do
       sign_in @user
       get :index, params: { user_id: @user.id }
 
-      expect(response.body).to include("Hello, world! This is the games#index view.")
+      expect(response.status).to eq(200)
+    end
+
+    it "#show" do
+      sign_in @user
+      game = @user.games.create(player_one_id: @user.id, player_two_id: 2)
+
+      get :show, params: {user_id: @user.id, id: game.id}
+      expect(response.status).to eq(200)
     end
   end
 
