@@ -5,4 +5,8 @@ module Matcher
       matchable_two.match!
     end
   end
+
+  def self.flip_cards(cards)
+    cards.each do {|c| c.flip! }
+  end
 end

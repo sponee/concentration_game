@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   before_action :authorize_players, :set_user, :authenticate_user
   skip_before_action :authorize_players, only: [:index, :new, :create]
-  skip_before_action :authenticate_user, only: [:show, :match_cards]
+  skip_before_action :authenticate_user, only: [:show, :match_cards, :show_guesses]
 
   def index
     @games = User.find(params[:user_id]).games
@@ -17,6 +17,11 @@ class GamesController < ApplicationController
     c2 = Card.find params[:card_ids].last
     Matcher.compare(c1, c2)
     redirect_to game_path(id: params[:id])
+  end
+
+  def show_guesses
+    redirect_to game_path(id: params[:id]), flash: {alert: "It is not your turn to guess"} if @user.id != @game.current_player_id
+    @game = Game.find(params["id"])
   end
 
   private

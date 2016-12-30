@@ -20,4 +20,12 @@ class Card < ApplicationRecord
   def match!
     self.update_attributes!(matched: true)
   end
+
+  def reveal!
+    self.update_attributes!(revealed: true)
+  end
+
+  def hide!
+    self.update_attributes!(revealed: false)
+  end
 end
