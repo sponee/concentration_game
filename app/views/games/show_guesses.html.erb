@@ -1,0 +1,19 @@
+<h2>Game On!</h2>
+
+<%= render 'game_header' %>
+
+<ul style="list-style-type:none">
+  <% @game.cards.each_with_index do |card, index| %>
+    <% if card.matched? || card.revealed? %>
+      <li><%= card.content %></li>
+    <% else %>
+      <li>
+        <%= card.id %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
+
+<script type="text/javascript">
+  setTimeout(function () { location.reload(true); }, 5000);
+</script>

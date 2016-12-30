@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221002416) do
+ActiveRecord::Schema.define(version: 20161230001535) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "game_id"
     t.string   "content"
-    t.string   "state"
+    t.boolean  "revealed",   default: false
     t.integer  "position"
     t.boolean  "matched",    default: false
     t.datetime "created_at",                 null: false

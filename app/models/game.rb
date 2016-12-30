@@ -8,6 +8,14 @@ class Game < ApplicationRecord
   validates :player_two_id, presence: true
   validate :validate_player_uniqueness
 
+  def update_current_player
+    if self.current_player_id == player_one_id
+      self.update_attributes(current_player_id: player_two_id)
+    elsif self.current_player_id == player_two_id
+      self.update_attributes(current_player_id: player_one_id)
+    end
+  end
+
   private
 
   def validate_player_uniqueness
