@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe GamesController, type: :controller do
-  render_views
 
   before do
     @user = create(:user)
