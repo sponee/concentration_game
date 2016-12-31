@@ -2,17 +2,18 @@
 
 <%= render 'game_header' %>
 
-<ul style="list-style-type:none">
-  <% @cards.each do |card| %>
-    <% if card.matched? || card.revealed? %>
-      <li><%= card.content %></li>
-    <% else %>
-      <li>
-        <%= card.id %>
-      </li>
-    <% end %>
+<table class = "table table-bordered table-striped">
+  <% @cards.each_slice(6) do |slice| %>
+  <tbody>
+    <td align="middle"><%= present_guess slice[0] %></td>
+    <td align="middle"><%= present_guess slice[1] %></td>
+    <td align="middle"><%= present_guess slice[2] %></td>
+    <td align="middle"><%= present_guess slice[3] %></td>
+    <td align="middle"><%= present_guess slice[4] %></td>
+    <td align="middle"><%= present_guess slice[5] %></td>
+  </tbody>
   <% end %>
-</ul>
+</table>
 
 <script type="text/javascript">
   setTimeout(function () { location.reload(true); }, 5000);
