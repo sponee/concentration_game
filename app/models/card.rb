@@ -12,7 +12,7 @@ class Card < ApplicationRecord
     Card.new('Chikorita', 'chikorita.png'),
     Card.new('Cyndaquil', 'cyndaquil.png'),
     Card.new('Totodile', 'totodile.png'),
-    Card.new('Marill' 'marrill.png')
+    Card.new('Marill', 'marrill.png')
   ]
 
   def matched?
