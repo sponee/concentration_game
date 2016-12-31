@@ -1,2 +1,16 @@
-<p>Your player ID is: <%= @user.id %></p>
-<p>The current player ID is: <%= @game.current_player_id %></p>
+<table class = "table table-bordered table-striped">
+  <thead>
+    <tr>
+     <th>Player One</th>
+     <th>Player One Score</th>
+     <th>Player Two</th>
+     <th>Player Two Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <td><%= User.find(@game.player_one_id).email %></td>
+    <td><%= @game.player_one_score %></td>
+    <td><%= User.find(@game.player_two_id).email %></td>
+    <td><%= @game.player_two_score %></td>
+  </tbody>
+</table>
