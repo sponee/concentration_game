@@ -3,18 +3,29 @@
 <%= render 'game_header' %>
 
 <%= form_tag({controller: "games", action: "match_cards"}, method: "patch") do %>
-  <ul style="list-style-type:none">
-    <% @cards.each do |card| %>
-      <% if card.matched? %>
-        <li><%= card.content %></li>
-      <% else %>
-        <li>
-          <%= check_box_tag('card_ids[]', card.id) %>
-          <%= card.id %>
-        </li>
-      <% end %>
-    <% end %>
-    <%= hidden_field_tag(:id, @game.id) %>
-  </ul>
-  <%= submit_tag("Match") %>
+<table class = "table table-bordered table-striped">
+  <% @cards.each_slice(6) do |slice| %>
+  <tbody>
+    <td align="middle"><%= present_card slice[0] %>
+                       <br /><%= check_box_tag('card_ids[]', slice[0].id) unless slice[0].matched? %>
+    </td>
+    <td align="middle"><%= present_card slice[1] %>
+                       <br /><%= check_box_tag('card_ids[]', slice[1].id) unless slice[1].matched? %>
+    </td>
+    <td align="middle"><%= present_card slice[2] %>
+                       <br /><%= check_box_tag('card_ids[]', slice[2].id) unless slice[2].matched? %>
+    </td>
+    <td align="middle"><%= present_card slice[3] %>
+                       <br /><%= check_box_tag('card_ids[]', slice[3].id) unless slice[3].matched? %>
+    </td>
+    <td align="middle"><%= present_card slice[4] %>
+                       <br /><%= check_box_tag('card_ids[]', slice[4].id) unless slice[4].matched? %>
+    </td>
+    <td align="middle"><%= present_card slice[5] %>
+                      <br /><%= check_box_tag('card_ids[]', slice[5].id) unless slice[5].matched? %>
+    </td>
+  </tbody>
+  <% end %>
 <% end %>
+</table>
+<%= submit_tag("Match") %>

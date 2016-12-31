@@ -6,7 +6,7 @@
         <% if @user.nil? %>
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
         <% elsif @user && @user.id != nil %>
-          <li role="presentation"><%= link_to 'New Game', new_game_path(@user) %>
+          <li role="presentation"><%= link_to 'New Game', new_user_game_path(@user) %>
           <li role="presentation"><%= link_to 'My Games', user_games_path(@user) %>
           <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></h2></li>
         <% end %>
