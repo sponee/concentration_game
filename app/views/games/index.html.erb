@@ -16,7 +16,7 @@
       <td><%=game.player_one_score %></td>
       <td><%= User.find(game.player_two_id).email %></td>
       <td><%= game.player_two_score %></td>
-      <td><%= link_to("Resume Game", user_game_path(id: game.id)) %></td>
+      <td><%= link_to("Resume Game", show_game_path(id: game.id)) %></td>
    </tbody>
  <% end %>
 </table>
