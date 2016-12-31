@@ -1,5 +1,5 @@
-<%= render 'game_header' %>
 <% if @current_user.id == @game.current_player_id %>
+  <p>Your Turn!</p>
   <%= render 'show_current_player' %>
 <% else %>
     <%= render 'show_waiting_player' %>
