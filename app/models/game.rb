@@ -25,8 +25,8 @@ class Game < ApplicationRecord
   end
 
   def generate_cards
-    (Card::CARD_CONTENT*2).shuffle.each_with_index do |content, index|
-      self.cards.create(content: content, position: index)
+    (Card::CARDS*2).shuffle.each_with_index do |card, index|
+      self.cards.create(content: card.content, image_url: card.image_url, position: index)
     end
   end
 end

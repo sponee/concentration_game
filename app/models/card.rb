@@ -1,16 +1,18 @@
 class Card < ApplicationRecord
   belongs_to :game
 
-  CARD_CONTENT = [
-    'Pikachu',
-    'Bulbasaur',
-    'Charmander',
-    'Squirtle',
-    'Eevee',
-    'Chikorita',
-    'Cyndaquil',
-    'Totodile',
-    'Marill'
+  Card = Struct.new(:content, :image_url)
+
+  CARDS = [
+    Card.new('Pikachu', 'pikachu.png'),
+    Card.new('Bulbasaur', 'bulbasaur.png'),
+    Card.new('Charmander', 'charmander.png'),
+    Card.new('Squirtle', 'squirtle.png'),
+    Card.new('Eevee', 'eevee.png'),
+    Card.new('Chikorita', 'chikorita.png'),
+    Card.new('Cyndaquil', 'cyndaquil.png'),
+    Card.new('Totodile', 'totodile.png'),
+    Card.new('Marill' 'marrill.png')
   ]
 
   def matched?

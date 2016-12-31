@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230001535) do
+ActiveRecord::Schema.define(version: 20161231021251) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "game_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161230001535) do
     t.boolean  "matched",    default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "image_url"
   end
 
   create_table "games", force: :cascade do |t|
