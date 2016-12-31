@@ -24,6 +24,7 @@ class Game < ApplicationRecord
       self.save
     elsif self.current_player_id == self.player_two_id
       self.player_two_score += 1
+      self.save
     end
   end
 
