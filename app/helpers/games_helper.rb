@@ -3,7 +3,7 @@ module GamesHelper
     if card.matched? || card.revealed?
       return card.content
     else    
-      return image_tag('back.png')
+      return image_tag('pokeball.png')
     end
   end
 
@@ -11,7 +11,7 @@ module GamesHelper
     if card.matched?
       return card.content
     else    
-      return image_tag('back.png')
+      return image_tag('pokeball.png')
     end
   end
 end
