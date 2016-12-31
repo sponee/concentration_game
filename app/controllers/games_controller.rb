@@ -28,7 +28,7 @@ class GamesController < ApplicationController
   end
 
   def match_cards
-    redirect_to user_game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
+    redirect_to user_game_path(@user, id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
     Matcher.compare(c1, c2)
