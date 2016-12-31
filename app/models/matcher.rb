@@ -4,6 +4,9 @@ module Matcher
     if matchable_one.content == matchable_two.content
       matchable_one.match!
       matchable_two.match!
+      return true
+    else 
+      return false
     end
   end
 

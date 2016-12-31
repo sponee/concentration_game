@@ -28,10 +28,11 @@ class GamesController < ApplicationController
   end
 
   def match_cards
+    @game = Game.find(params[:id])
     redirect_to user_game_path(@user, id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
-    Matcher.compare(c1, c2)
+    @game.update_score(@game.current_player_id) if Matcher.compare(c1, c2)
     redirect_to show_guesses_path(id: params[:id], card_ids: params[:card_ids])
   end
 

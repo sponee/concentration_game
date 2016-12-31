@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
   has_many :cards
-  after_create :generate_cards
+  after_create :generate_cards, :set_score
   
   validates :user_id, presence: true
   validates :player_one_id, presence: true
@@ -18,6 +18,15 @@ class Game < ApplicationRecord
     end
   end
 
+  def update_score(current_player_id)
+    if self.current_player_id == self.player_one_id
+      self.player_one_score += 1
+      self.save
+    elsif self.current_player_id == self.player_two_id
+      self.player_two_score += 1
+    end
+  end
+
   private
 
   def validate_player_uniqueness
@@ -28,5 +37,9 @@ class Game < ApplicationRecord
     (Card::CARDS*2).shuffle.each_with_index do |card, index|
       self.cards.create(content: card.content, image_url: card.image_url, position: index)
     end
+  end
+
+  def set_score
+    self.update_attributes(player_one_score: 0, player_two_score: 0)
   end
 end
