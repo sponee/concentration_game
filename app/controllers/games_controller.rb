@@ -4,7 +4,8 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user, only: [:show, :match_cards, :show_guesses]
 
   def index
-    @games = Game.where(player_one_id: @user.id) + Game.where(player_two_id: @user.id)
+    @games_in_progress = Game.active.where(player_one_id: @user.id) + Game.active.where(player_two_id: @user.id)
+    @completed_games = Game.completed.where(player_one_id: @user.id) + Game.completed.where(player_two_id: @user.id)
   end
 
   def new
@@ -29,7 +30,7 @@ class GamesController < ApplicationController
 
   def match_cards
     @game = Game.find(params[:id])
-    redirect_to user_game_path(@user, id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
+    redirect_to show_game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
     @game.update_score(@game.current_player_id) if Matcher.compare(c1, c2)
