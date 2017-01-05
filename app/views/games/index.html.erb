@@ -1,47 +1,19 @@
-<h3>Active Games</h3>
-<div class="well">
-<table class = "table table-bordered table-striped">
- <thead>
-    <tr>
-     <th>Player One</th>
-     <th>Score</th>
-     <th>Player Two</th>
-     <th>Score</th>
-     <th>Resume Game</th>
-    </tr>
- </thead>
- <% @games_in_progress.each do |game| %>
-   <tbody>
-      <td><%= User.find(game.player_one_id).email %></td>
-      <td><%=game.player_one_score %></td>
-      <td><%= User.find(game.player_two_id).email %></td>
-      <td><%= game.player_two_score %></td>
-      <td><%= link_to("Resume Game", show_game_path(id: game.id)) %></td>
-   </tbody>
- <% end %>
-</table>
-</div>
+<h3> Active Games</h3>
+<% if @games_in_progress.empty? %>
+  <div class="well">
+    You do not have any active games.
+    <%= link_to('Start a game', new_user_game_path) %>
+  </div>
+<% else %>
+  <%= render 'active_games' %>
+<% end %>
 
 <h3>Completed Games</h3>
-<div class="well">
-  <table class = "table table-bordered table-striped">
-   <thead>
-      <tr>
-       <th>Player One</th>
-       <th>Score</th>
-       <th>Player Two</th>
-       <th>Score</th>
-       <th>Winner</th>
-      </tr>
-   </thead>
-   <% @completed_games.each do |game| %>
-     <tbody>
-        <td><%= User.find(game.player_one_id).email %></td>
-        <td><%=game.player_one_score %></td>
-        <td><%= User.find(game.player_two_id).email %></td>
-        <td><%= game.player_two_score %></td>
-        <td><%= User.find(game.winner_id).email %></td>
-     </tbody>
-   <% end %>
-  </table>
-</div>
+<% if @completed_games.empty? %>
+  <div class="well">
+    You have not completed any games.
+    <%= link_to('Start a game', new_user_game_path) %>
+  </div>
+<% else %>
+  <%= render 'completed_games' %>
+<% end %>

@@ -1,0 +1,8 @@
+<h2>Pokémon Trivia!</h2>
+<div class="jumbotron">
+  <div class = "container">
+    <p><b>Question</b>: <%= @trivia.last %></p>
+    <span style="display: none;" id="hiddenText"><p><b>Answer</b>: <%= @trivia.first.capitalize %></p></span>
+    <a href="#" onclick="$('#hiddenText').show(); return false;">Show Answer</a>
+  </div>
+</div>

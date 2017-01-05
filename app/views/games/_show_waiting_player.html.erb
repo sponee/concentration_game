@@ -1,3 +1,4 @@
+<%= render 'trivia' %>
 <%= render 'game_header' %>
 <table class = "table table-bordered table-striped">
     <% @cards.each_slice(6) do |slice| %>
@@ -13,5 +14,5 @@
 </table>
 
 <script type="text/javascript">
-  setTimeout(function () { location.reload(true); }, 3000);
+  setTimeout(function () { location.reload(true); }, 10000);
 </script>
