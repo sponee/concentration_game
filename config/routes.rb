@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users do
     get '/games', to: 'games#index'
+    post '/games/new', to: 'games#create'
       resources :games do
     end
   end

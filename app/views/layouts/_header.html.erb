@@ -1,7 +1,7 @@
 <header id="page-header" style = "padding-bottom:50px;">
   <nav class="navbar-right navbar-default navbar-fixed-top">
     <div class="container">
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-pills">
         <li role="presentation"><%= link_to 'Home', root_path %></li>
         <% if @user.nil? %>
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
