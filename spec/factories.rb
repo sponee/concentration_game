@@ -9,6 +9,7 @@ FactoryGirl.define do
   factory :user do
     email {"user_#{rand(1000).to_s}@factory.com" }
     password "12345678"
+    username {"user_#{rand(1000)}"}
   end
 
   factory :game do 

@@ -11,11 +11,11 @@
    </thead>
    <% @completed_games.each do |game| %>
      <tbody>
-        <td><%= User.find(game.player_one_id).email %></td>
+        <td><%= User.find(game.player_one_id).username %></td>
         <td><%=game.player_one_score %></td>
-        <td><%= User.find(game.player_two_id).email %></td>
+        <td><%= User.find(game.player_two_id).username %></td>
         <td><%= game.player_two_score %></td>
-        <td><%= User.find(game.winner_id).email %></td>
+        <td><%= User.find(game.winner_id).username %></td>
      </tbody>
    <% end %>
   </table>

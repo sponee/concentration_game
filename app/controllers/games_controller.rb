@@ -13,8 +13,8 @@ class GamesController < ApplicationController
   end
 
   def create
-    redirect_to new_user_game_path(@user), flash: {alert: "That person is not registered to play."} and return unless User.find_by_email(params[:challenger_email])
-    @game = @user.games.new(player_one_id: @user.id, player_two_id: User.find_by_email(params[:challenger_email]).id, current_player_id: @user.id)
+    redirect_to new_user_game_path(@user), flash: {alert: "That person is not registered to play."} and return unless User.find_by_username(params[:challenger_username])
+    @game = @user.games.new(player_one_id: @user.id, player_two_id: User.find_by_username(params[:challenger_username]).id, current_player_id: @user.id)
     if @game.save
        redirect_to show_game_path(id: @game), notice: "Let the game begin!"
     else
