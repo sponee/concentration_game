@@ -1,10 +1,7 @@
-<h2>New Game for <%= current_user.email %></h2>
+<h2>Invite your friend by adding their email</h2>
 <div class = "well">
-  <p>Invite your friend by adding their email</p>
-   <%= form_tag({controller: "games", action: "create"}, method: "post") do %>
-      <%= label_tag :challenger_email %>
-      <%= text_field_tag :challenger_email %>
-      <%= submit_tag("Start Game") %>
+   <%= bootstrap_form_tag( url: "/users/#{@user.id}/games/new") do |f| %>
+      <%= f.text_field :challenger_email %>
+      <%= f.submit("Start Game") %>
    <% end %>
-   <p><%= link_to "Cancel", user_games_path(current_user) %>
 </div>

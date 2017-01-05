@@ -1,5 +1,17 @@
-<% if @user %>
-  <p><%= "Hello, #{@user.email}, get ready to concentrate." %></p>
-<% else %>
-  <p>"Hello, world! Get ready to concentrate."</p>
-<% end %>
+<div class = "jumbotron">
+  <div align="middle">
+    <%= image_tag('pokemon_logo.png', align: 'center', alt: 'logo') %>
+    <p align="center-justify">
+      Hello, there! Glad to meet you! My name is OAK.<br>
+      I will introduce you to the world of Pokémon Match.<br>
+      Pokémon Match is a game of skill and chance.<br>
+      At the beginning of each game there will be 18 Pokéballs on the table.<br>
+      Select two Pokéballs and select "Match" to reveal the Pokémon within.<br>
+      The first Trainer with 5 matches wins.<br>
+      <span class="label"><%= link_to('Become a Trainer', new_user_registration_path) %></span>
+    </p>
+    <%= image_tag('prof_oak.png') %>
+    <div>
+    </div>
+  </div>
+</div>

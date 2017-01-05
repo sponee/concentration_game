@@ -9,7 +9,8 @@ class Game < ApplicationRecord
   validate :validate_player_uniqueness
 
   scope :active, -> { where(winner_id: nil) }
-
+  scope :completed, -> { where.not(winner_id: nil)}
+  
   def update_current_player
     if self.current_player_id == player_one_id
       self.update_attributes(current_player_id: player_two_id)
@@ -24,6 +25,13 @@ class Game < ApplicationRecord
       self.save
     elsif self.current_player_id == self.player_two_id
       self.player_two_score += 1
+      self.save
+    end
+  end
+
+  def end_game
+    if self.cards.matched.count >= 10
+      self.winner_id = [player_one_score, player_two_score].sort.first
       self.save
     end
   end

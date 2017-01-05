@@ -1,6 +1,8 @@
 class Card < ApplicationRecord
   belongs_to :game
 
+  scope :matched, -> { where(matched: true) }
+
   Card = Struct.new(:content, :image_url)
 
   CARDS = [
