@@ -14,7 +14,7 @@ class GamesController < ApplicationController
 
   def create
     redirect_to new_user_game_path(@user), flash: {alert: "That person is not registered to play."} and return unless User.find_by_username(params[:challenger_username])
-    @game = @user.games.new(player_one_id: @user.id, player_two_id: User.find_by_username(params[:challenger_username]).id, current_player_id: @user.id)
+    @game = @user.games.new(player_one_id: @user.id, player_two_id: User.find_by_username(params[:challenger_username]).id)
     if @game.save
        redirect_to show_game_path(id: @game), notice: "Let the game begin!"
     else
@@ -30,8 +30,8 @@ class GamesController < ApplicationController
   end
 
   def match_cards
-    @game = Game.find(params[:id])
     redirect_to show_game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
+    @game = Game.find(params[:id])
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
     @game.update_score(@game.current_player_id) if Matcher.compare(c1, c2)
@@ -39,11 +39,9 @@ class GamesController < ApplicationController
   end
 
   def show_guesses
+    redirect_to show_game_path(id: params[:id]) and return if @user.id != @game.current_player_id
     @game = Game.find(params["id"])
     @cards = Card.where(game_id: @game.id).order(position: :asc).to_ary
-    redirect_to user_game_path(@user, id: params[:id]) and return if @user.id != @game.current_player_id
-    c1 = Card.find params[:card_ids].first
-    c2 = Card.find params[:card_ids].last
     @game.update_current_player
   end
 
