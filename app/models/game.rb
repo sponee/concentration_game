@@ -39,6 +39,10 @@ class Game < ApplicationRecord
     end
   end
 
+  def over?
+    winner_id != nil
+  end
+
   private
 
   def validate_player_uniqueness
