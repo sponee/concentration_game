@@ -1,6 +1,6 @@
 <% if @game.over? %>
   <%= render 'game_over' %>
-<% elsif @game.over == false && @current_user.id == @game.current_player_id %>
+<% elsif @game.over? == false && @current_user.id == @game.current_player_id %>
     <p>Your Turn!</p>
     <%= render 'show_current_player' %>
 <% else %>
