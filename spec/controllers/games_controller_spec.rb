@@ -24,6 +24,13 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to render_template(:show)
       expect(response.status).to eq(200)
     end
+
+    it "#new renders the games#new template" do
+      sign_in @user
+      get :new, params: {user_id: @user.id}
+
+      expect(response).to render_template(:new)
+    end
   end
 
   context "When not logged in" do
@@ -44,6 +51,15 @@ RSpec.describe GamesController, type: :controller do
       expect(response.status).to eq(302)
       expect(response.redirect_url).to eq(root_url)
       expect(flash["alert"]).to eq("You are not playing this game.")
+    end
+
+    it "#new redirects to the root_url and flashes an error" do
+      sign_in nil
+      get :new, params: {user_id: @user.id}
+
+      expect(response.status).to eq(302)
+      expect(response.redirect_url).to eq(root_url)
+      expect(flash["alert"]).to eq("You are not authorized to view this content.")
     end
   end
 end

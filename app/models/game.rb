@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   belongs_to :user
   has_many :cards
-  after_create :generate_cards, :set_score
+  after_create :generate_cards, :set_score, :set_current_player
   
   validates :user_id, presence: true
   validates :player_one_id, presence: true
@@ -54,5 +54,9 @@ class Game < ApplicationRecord
 
   def set_score
     self.update_attributes(player_one_score: 0, player_two_score: 0)
+  end
+
+  def set_current_player
+    update_attributes(current_player_id: player_one_id)
   end
 end
