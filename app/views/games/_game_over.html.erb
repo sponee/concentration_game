@@ -1,0 +1,13 @@
+<%= render 'game_header' %>
+<table class = "table table-bordered table-striped">
+    <% @cards.each_slice(6) do |slice| %>
+    <tbody>
+      <td align="middle"><%= present_card slice[0] %></td>
+      <td align="middle"><%= present_card slice[1] %></td>
+      <td align="middle"><%= present_card slice[2] %></td>
+      <td align="middle"><%= present_card slice[3] %></td>
+      <td align="middle"><%= present_card slice[4] %></td>
+      <td align="middle"><%= present_card slice[5] %></td>
+    </tbody>
+  <% end %>
+</table>
