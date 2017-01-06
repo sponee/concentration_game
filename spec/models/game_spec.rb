@@ -26,4 +26,33 @@ RSpec.describe Game do
     @game.update_attributes!(user_id: @user.id, player_one_id: @user.id, player_two_id: @player_two.id)
     expect(@game.cards.count).to eq(18)
   end
+
+  describe "#end_game" do 
+    it "sets the winner_id based on scores with 5 matched pairs" do
+      @game.user_id = @user.id
+      @game.player_one_id, @game.player_two_id = @user.id, @player_two.id
+      @game.save
+      @game.cards.limit(10).update_all(matched: true)
+
+      expect(@game.winner_id).to eq(nil)
+
+      @game.update_attributes(player_one_score: 5, player_two_score: 0)
+
+      @game.end_game
+      expect(@game.winner_id).to eq(@user.id)
+    end
+
+    it "does nothing with less than 5 matched pairs" do
+      @game.user_id = @user.id
+      @game.player_one_id, @game.player_two_id = @user.id, @player_two.id
+      @game.save
+      @game.cards.limit(8).update_all(matched: true)
+
+      expect(@game.winner_id).to eq(nil)
+      @game.update_attributes(player_one_score: 4, player_two_score: 0)
+
+      @game.end_game
+      expect(@game.winner_id).to eq(nil)
+    end
+  end
 end
