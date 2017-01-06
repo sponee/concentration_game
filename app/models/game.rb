@@ -30,12 +30,12 @@ class Game < ApplicationRecord
 
   def end_game
     if cards.matched.count >= 10
-      if player_one_score > player_two_score
+      if player_one_score >= 5
         self.winner_id = player_one_id
-      else
+      elsif player_two_score >= 5
         self.winner_id = player_two_id
       end
-    save
+      save
     end
   end
 
