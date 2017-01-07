@@ -1,0 +1,23 @@
+<h3><%= User.find(@user_performance.user_id).username %>'s Win/Loss Record</h3>
+<div class="well">
+<table class = "table table-bordered table-striped">
+ <thead>
+    <tr>
+     <th>Wins</th>
+     <th>Losses</th>
+     <th>Win/Loss Ratio</th>
+    </tr>
+ </thead>
+ <tbody>
+    <td><%= @user_performance.wins %></td>
+    <td><%= @user_performance.losses %></td>
+    <td><%= @user_performance.win_loss_ratio %></td>
+ </tbody>
+</table>
+</div>
+<h3><%= User.find(@user_performance.user_id).username %>'s Recently Completed Games</h3>
+<% if @completed_games.empty? %>
+  <p><%= User.find(@user_performance.user_id).username %> has not completed any games</p>
+<% else %>
+  <%= render 'games/completed_games' %>
+<% end %>

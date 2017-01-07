@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :user_performance do
+    user_id 1
+    wins 1
+    losses 1
+    win_loss_ratio 1.5
+  end
   factory :card do
     content "Pikachu"
     revealed false

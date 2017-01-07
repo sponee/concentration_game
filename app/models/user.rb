@@ -7,10 +7,10 @@ class User < ApplicationRecord
   attr_accessor :login
 
   has_many :games
-
+  has_one :user_performance
+  after_create :generate_performance
 
   validate :validate_username
-
   validates :username,
   :presence => true,
   :uniqueness => {
@@ -53,5 +53,9 @@ class User < ApplicationRecord
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
+  end
+
+  def generate_performance
+    self.create_user_performance
   end
 end
