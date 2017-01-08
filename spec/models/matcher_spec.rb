@@ -20,6 +20,6 @@ RSpec.describe Matcher do
     expect(c1).to receive(:reveal!)
     expect(c2).to receive(:reveal!)
 
-    Matcher.reveal_cards([c1,c2])
+    Matcher.reveal_matchables([c1,c2])
   end
 end

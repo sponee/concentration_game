@@ -26,7 +26,7 @@ class GamesController < ApplicationController
     @trivia = Trivia::TRIVIA.to_a.sample
     @game = Game.find(params["id"])
     @cards = Card.where(game_id: @game.id).order(position: :asc).to_ary
-    Matcher.hide_cards(@game.cards)
+    Matcher.hide_matchables(@game.cards)
   end
 
   def match_cards
