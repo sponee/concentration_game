@@ -7,6 +7,6 @@ class UserPerformancesController < ApplicationController
 
   def leaderboard
     set_user
-    @leaders = UserPerformance.order(games_completed: :desc, win_loss_ratio: :desc).limit(13)
+    @leaders = UserPerformance.order(win_loss_ratio: :desc, games_completed: :desc).limit(13)
   end
 end
