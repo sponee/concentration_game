@@ -11,9 +11,9 @@
    </thead>
    <% @completed_games.each do |game| %>
      <tbody>
-        <td><%= User.find(game.player_one_id).username %></td>
+        <td><%= link_to(User.find(game.player_one_id).username, show_performance_path(User.find(game.player_one_id))) %></td>
         <td><%=game.player_one_score %></td>
-        <td><%= User.find(game.player_two_id).username %></td>
+        <td><%= link_to(User.find(game.player_two_id).username, show_performance_path(User.find(game.player_two_id))) %></td>
         <td><%= game.player_two_score %></td>
         <td><%= User.find(game.winner_id).username %></td>
      </tbody>

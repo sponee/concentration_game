@@ -11,7 +11,7 @@
         </tr>
       </thead>
       <tbody>
-        <td><%= @leaders.first.user.username %></td>
+        <td><%= link_to(User.find(@leaders.first.user).username, show_performance_path(User.find(@leaders.first.user.id))) %></td>
         <td><%= @leaders.first.wins %></td>
         <td><%= @leaders.first.losses %></td>
         <td><%= @leaders.first.games_completed %></td>
@@ -33,7 +33,7 @@
       </thead>
       <% @leaders[1..4].each do |elite_four| %>
       <tbody>
-        <td><%= elite_four.user.username %></td>
+        <td><%= link_to(User.find(elite_four.user).username, show_performance_path(User.find(elite_four.user.id))) %></td>
         <td><%= elite_four.wins %></td>
         <td><%= elite_four.losses %></td>
         <td><%= elite_four.games_completed %></td>
@@ -56,7 +56,7 @@
         </thead>
         <% @leaders[5..12].each do |gym_leader| %>
         <tbody>
-          <td><%= gym_leader.user.username %></td>
+          <td><%= link_to(User.find(gym_leader.user).username, show_performance_path(User.find(gym_leader.user.id))) %></td>
           <td><%= gym_leader.wins %></td>
           <td><%= gym_leader.losses %></td>
           <td><%= gym_leader.games_completed %></td>
