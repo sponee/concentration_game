@@ -4,8 +4,8 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user, only: [:show, :match_cards, :show_guesses]
 
   def index
-    @games_in_progress = Game.active.where(player_one_id: @user.id) + Game.active.where(player_two_id: @user.id)
-    @completed_games = Game.completed.where(player_one_id: @user.id) + Game.completed.where(player_two_id: @user.id)
+    @games_in_progress = Game.active.where(player_one_id: @user.id).or(Game.active.where(player_two_id: @user.id))
+    @completed_games = Game.completed.where(player_one_id: @user.id).or(Game.completed.where(player_two_id: @user.id)).limit(10)
   end
 
   def new

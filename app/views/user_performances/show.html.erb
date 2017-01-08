@@ -24,5 +24,5 @@
   <%= render 'games/completed_games' %>
 <% end %>
 <% if @current_user %>
-    <%= button_to("Challenge #{@user_performance.user.username}", new_user_game_path(user_id: current_user, challenger_username: @user_performance.user.username)) %>
+    <%= link_to("Challenge #{@user_performance.user.username}", new_user_game_path(user_id: current_user, challenger_username: @user_performance.user.username)) %>
 <% end %>
