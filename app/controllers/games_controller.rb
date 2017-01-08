@@ -26,16 +26,16 @@ class GamesController < ApplicationController
     @trivia = Trivia::TRIVIA.to_a.sample
     @game = Game.find(params["id"])
     @cards = Card.where(game_id: @game.id).order(position: :asc).to_ary
-    Matcher.hide_cards(@game.cards)
+    Matcher.hide_matchables(@game.cards)
   end
 
   def match_cards
-    redirect_to show_game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].count != 2 
+    redirect_to show_game_path(id: params[:id]), flash: {alert: "Please select two cards"} and return if params[:card_ids].nil? || params[:card_ids].count != 2 
     @game = Game.find(params[:id])
     c1 = Card.find params[:card_ids].first
     c2 = Card.find params[:card_ids].last
     @game.update_score(@game.current_player_id) if Matcher.compare(c1, c2)
-    redirect_to show_guesses_path(id: params[:id], card_ids: params[:card_ids])
+    redirect_to show_guesses_path(id: params[:id])
   end
 
   def show_guesses

@@ -31,6 +31,45 @@ RSpec.describe GamesController, type: :controller do
 
       expect(response).to render_template(:new)
     end
+
+    describe "#match_cards" do
+      before do
+        sign_in @user
+        @c1 = @game.cards.first
+        @c2 = @game.cards.second
+      end
+
+      context "with 2 objects in the card_ids array" do
+        it "calls Matcher.compare on the objects in the card_ids array" do
+          expect(Matcher).to receive(:compare).with(@c1,@c2)
+
+          get :match_cards, params: {user_id: @user.id, id: @game.id, card_ids: [@c1,@c2]}
+        end
+
+        it "redirects to the show_guesses_url" do
+          get :match_cards, params: {user_id: @user.id, id: @game.id, card_ids: [@c1,@c2]}
+          expect(response.redirect_url).to eq(show_guesses_url(id: @game.id))
+        end
+      end
+
+      context "with less than 2 objects in the card_ids array" do
+        it "redirects to the show_game url and flashes an error" do
+          get :match_cards, params: {user_id: @user.id, id: @game.id, card_ids: []}
+
+          expect(response.redirect_url).to eq(show_game_url(@game))
+          expect(flash["alert"]).to include("Please select two cards")
+        end
+      end
+
+      context "with more than 2 objects in the card_ids array" do 
+        it "redirects to the show_game url and flashes an error" do
+          get :match_cards, params: {user_id: @user.id, id: @game.id, card_ids: [1,2,3]}
+
+          expect(response.redirect_url).to eq(show_game_url(@game))
+          expect(flash["alert"]).to include("Please select two cards")
+        end
+      end
+    end
   end
 
   context "When not logged in" do
