@@ -4,10 +4,12 @@
       <ul class="nav nav-pills">
         <li role="presentation"><%= link_to image_tag('pokeball.png', size: "25x25"), root_path %></li>
         <% if @user.nil? %>
+        <li role="presentation"><%= link_to 'Leaderboard', show_leaderboard_path %></h2></li>
           <li role="presentation"><%= link_to 'Log In', new_user_session_path %></li>
         <% elsif @user && @user.id != nil %>
           <li role="presentation"><%= link_to 'New Game', new_user_game_path(@user) %>
           <li role="presentation"><%= link_to 'My Games', user_games_path(@user) %>
+          <li role="presentation"><%= link_to 'Leaderboard', show_leaderboard_path %></h2></li>
           <li role="presentation"><%= link_to 'Logout', destroy_user_session_url, method: :delete %></h2></li>
         <% end %>
       </ul>
