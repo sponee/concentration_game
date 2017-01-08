@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170107212125) do
+ActiveRecord::Schema.define(version: 20170108000842) do
 
   create_table "cards", force: :cascade do |t|
     t.integer  "game_id"
@@ -37,11 +37,12 @@ ActiveRecord::Schema.define(version: 20170107212125) do
 
   create_table "user_performances", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "wins",           default: 0
-    t.integer  "losses",         default: 0
-    t.float    "win_loss_ratio", default: 0.0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "wins",            default: 0
+    t.integer  "losses",          default: 0
+    t.float    "win_loss_ratio",  default: 0.0
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "games_completed", default: 0
   end
 
   create_table "users", force: :cascade do |t|

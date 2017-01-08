@@ -1,0 +1,68 @@
+<h2>League Champion</h2>
+  <div class="jumbotron">
+    <table class = "table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>Games Completed</th>
+          <th>Win/Loss Ratio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <td><%= @leaders.first.user.username %></td>
+        <td><%= @leaders.first.wins %></td>
+        <td><%= @leaders.first.losses %></td>
+        <td><%= @leaders.first.games_completed %></td>
+        <td><%= @leaders.first.win_loss_ratio %></td>
+      </tbody>
+    </table>
+  </div>
+  <h2>Elite 4</h2>
+  <div class="jumbotron">
+    <table class = "table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Wins</th>
+          <th>Losses</th>
+          <th>Games Completed</th>
+          <th>Win/Loss Ratio</th>
+        </tr>
+      </thead>
+      <% @leaders[1..4].each do |elite_four| %>
+      <tbody>
+        <td><%= elite_four.user.username %></td>
+        <td><%= elite_four.wins %></td>
+        <td><%= elite_four.losses %></td>
+        <td><%= elite_four.games_completed %></td>
+        <td><%= elite_four.win_loss_ratio %></td>
+      </tbody>
+    <% end %>
+    </table>
+    </div>
+    <h2>Gym Leaders</h2>
+    <div class="jumbotron">
+      <table class = "table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Games Completed</th>
+            <th>Win/Loss Ratio</th>
+          </tr>
+        </thead>
+        <% @leaders[5..12].each do |gym_leader| %>
+        <tbody>
+          <td><%= gym_leader.user.username %></td>
+          <td><%= gym_leader.wins %></td>
+          <td><%= gym_leader.losses %></td>
+          <td><%= gym_leader.games_completed %></td>
+          <td><%= gym_leader.win_loss_ratio %></td>
+      </tbody>
+    <% end %>
+  </table>
+  </div>
+</div>

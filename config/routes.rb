@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get   'leaderboard',            to: 'user_performances#leaderboard', as: 'show_leaderboard'
   get   'user_performances/:id',  to: 'user_performances#show', as: 'show_performance'
   patch 'games/:id/match_cards',  to: 'games#match_cards',      as: 'match_cards'
   get   'games/:id',              to: 'games#show',             as: 'show_game'
