@@ -23,7 +23,7 @@ RSpec.describe Matcher do
     Matcher.reveal_matchables([@c1,@c2])
   end
 
-  it "#hide_matchables calls hide! on its arguments" do
+  it "#hide_matchables calls #hide! on its arguments" do
     @c1 = @game.cards.first
     @c2 = @game.cards.second
     expect(@c1).to receive(:hide!)
