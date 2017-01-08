@@ -8,7 +8,11 @@
       At the beginning of each game there will be 18 Pokéballs on the table.<br>
       Select two Pokéballs and select "Match" to reveal the Pokémon within.<br>
       The first Trainer with 5 matches wins.<br>
-      <span class="label"><%= link_to('Become a Trainer', new_user_registration_path) %></span>
+      <% if current_user.nil? %>
+        <span class="label"><h4><%= link_to('Become a Trainer', new_user_registration_path) %></h4></span>
+      <% else %>
+        <span class="label"><%= link_to('Restart your Journey', user_games_path(current_user)) %></span>
+      <% end %> 
     </p>
     <%= image_tag('prof_oak.png') %>
     <div>
