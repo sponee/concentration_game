@@ -1,18 +1,21 @@
-<%= render 'game_header' %>
+<% if @game.over? %>
+  <%= render 'game_over' %>
+<% else %>
+  <%= render 'game_header' %>
+  <table class = "table table-bordered table-striped">
+    <% @cards.each_slice(6) do |slice| %>
+    <tbody>
+      <td align="middle"><%= present_guess slice[0] %></td>
+      <td align="middle"><%= present_guess slice[1] %></td>
+      <td align="middle"><%= present_guess slice[2] %></td>
+      <td align="middle"><%= present_guess slice[3] %></td>
+      <td align="middle"><%= present_guess slice[4] %></td>
+      <td align="middle"><%= present_guess slice[5] %></td>
+    </tbody>
+    <% end %>
+  </table>
 
-<table class = "table table-bordered table-striped">
-  <% @cards.each_slice(6) do |slice| %>
-  <tbody>
-    <td align="middle"><%= present_guess slice[0] %></td>
-    <td align="middle"><%= present_guess slice[1] %></td>
-    <td align="middle"><%= present_guess slice[2] %></td>
-    <td align="middle"><%= present_guess slice[3] %></td>
-    <td align="middle"><%= present_guess slice[4] %></td>
-    <td align="middle"><%= present_guess slice[5] %></td>
-  </tbody>
-  <% end %>
-</table>
-
-<script type="text/javascript">
-  setTimeout(function () { location.reload(true); }, 3000);
-</script>
+  <script type="text/javascript">
+    setTimeout(function () { location.reload(true); }, 3000);
+  </script>
+<% end %>

@@ -1,3 +1,12 @@
+<% if @user.id == @game.winner_id %>
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Congratulations, you won!</h4>
+  </div>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Better luck next time.</h4>
+  </div>
+<% end %>
 <%= render 'game_header' %>
 <table class = "table table-bordered table-striped">
     <% @cards.each_slice(6) do |slice| %>
