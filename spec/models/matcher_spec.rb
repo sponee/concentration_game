@@ -8,7 +8,7 @@ RSpec.describe Matcher do
     @c2 = @game.cards.second
   end
 
-  it "#comparecalls #reveal_matchables on its arguments" do
+  it "#compare calls #reveal_matchables on its arguments" do
     expect(Matcher).to receive(:reveal_matchables).with([@c1,@c2])
 
     Matcher.compare(@c1,@c2)
