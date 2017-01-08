@@ -1,7 +1,7 @@
-<h2>Invite your friend by adding their email</h2>
+<h2>Challenge your friend by adding their username</h2>
 <div class = "well">
    <%= bootstrap_form_tag( url: "/users/#{@user.id}/games/new") do |f| %>
-      <%= f.text_field :challenger_username %>
+      <%= f.text_field :challenger_username, value: params[:challenger_username] %>
       <%= f.submit("Start Game") %>
    <% end %>
 </div>
