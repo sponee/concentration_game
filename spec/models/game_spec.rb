@@ -6,6 +6,8 @@ RSpec.describe Game do
     @game = build(:game)
     @user = create(:user)
     @player_two = create(:user)
+    @game.player_one_id = @user.id
+    @game.player_two_id = @player_two.id
   end
 
   it "belongs to a player" do
@@ -28,14 +30,15 @@ RSpec.describe Game do
   end
 
   it "sets its owner as the current_player after being created" do
-    @game.user_id = @user.id
+    @game.user = @user
+    @game.player_one_id = @user.id
     expect(@game.current_player_id).to eq(nil)
     @game.save
     expect(@game.current_player_id).to eq(@user.id)
   end
 
   it "#update_current_player swaps current_player_id" do
-    @game.user_id = @user.id
+    @game.user = @user
     @game.save
     
     expect(@game.current_player_id).to eq(@user.id)
